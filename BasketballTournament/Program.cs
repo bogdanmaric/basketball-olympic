@@ -1,23 +1,29 @@
 ﻿using BasketballTournament;
+using BasketballTournament.GroupPhase;
 using System.Text.Json;
+using System.Text.RegularExpressions;
+using Group = BasketballTournament.Group;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
         string pathGroups = "D:\\Projects\\Visual Studio\\BasketballTournament\\BasketballTournament\\task\\groups.json";
-
         string jsonString = File.ReadAllText(pathGroups);
+        var dataForGroups = JsonSerializer.Deserialize<Dictionary<string, List<NationalTeam>>>(jsonString);
 
-        var groupData = JsonSerializer.Deserialize<Dictionary<string, List<Country>>>(jsonString);
-
-        foreach (var group in groupData)
+        // Creating every Group and put all of them in List of groups, which will be given to GroupStage
+        List<Group> groups = new List<Group>();
+        foreach (var groupData in dataForGroups) 
         {
-            Console.WriteLine($"Group {group.Key}:");
-            foreach (var country in group.Value)
-            {
-                Console.WriteLine($"  Team: {country.Team}, ISO Code: {country.ISOCode}, FIBA Ranking: {country.FIBARanking}");
+            Group group = new Group(groupData.Key);
+            foreach (var nationalTeam in groupData.Value) {
+                group.NationalTeamsInGroup.Add(new NationalTeamInGroup(nationalTeam));
             }
+            groups.Add(group);
         }
+
+        GroupPhase groupPhase = new GroupPhase(groups);
+        Console.WriteLine(groupPhase);
     }
 }

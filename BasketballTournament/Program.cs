@@ -18,12 +18,13 @@ internal class Program
         {
             Group group = new Group(groupData.Key);
             foreach (var nationalTeam in groupData.Value) {
-                group.NationalTeamsInGroup.Add(new NationalTeamInGroup(nationalTeam));
+                group.NationalTeamInGroup.Add(new NationalTeamInGroup(nationalTeam));
             }
             groups.Add(group);
         }
 
         GroupPhase groupPhase = new GroupPhase(groups);
+        groupPhase.SimulateGroupPhase();
         Console.WriteLine(groupPhase);
     }
 }

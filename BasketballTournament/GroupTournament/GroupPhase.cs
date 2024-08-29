@@ -20,6 +20,14 @@ namespace BasketballTournament.GroupPhase
             Groups = new List<Group>();
         }
 
+        public void SimulateGroupPhase()
+        {
+            foreach (var group in Groups) 
+            {
+                group.simulateMatchesInGroup();
+            }
+        }
+
         public override string ToString()
         {
             string result = "";

@@ -13,13 +13,14 @@ namespace BasketballTournament.GroupPhase
         public NationalTeam NationalTeam { get; set; }
         public int Points { get; set; }
         public int Position { get; set; }
+
         public static int placeInGroup = 1;
 
         public NationalTeamInGroup(NationalTeam nationalTeam) 
         {
             NationalTeam = nationalTeam;
-            fillPostionNumber();
             Points = 0;
+            fillPostionNumber();
         }
 
         private void fillPostionNumber()
@@ -30,6 +31,12 @@ namespace BasketballTournament.GroupPhase
             }
 
             Position = placeInGroup++;
+        }
+
+        public void UpdateStats(int thisTeamScore, int opponentTeamScore, bool thisTeamWon)
+        {
+            Points += (thisTeamWon) ? 2 : 1;
+            NationalTeam.TeamStats.UpdateTeamStats(thisTeamScore, opponentTeamScore);
         }
 
         public override string ToString()

@@ -25,7 +25,7 @@ namespace BasketballTournament.BasketballTeam
             DifferenceScoreReceivedPoints = 0;
         }
 
-        public void UpdateStats(int scored, int received)
+        public void UpdateTeamStats(int scored, int received)
         {
             ScoredPoints += scored;
             ReceivedPoints += received;

@@ -15,11 +15,13 @@ namespace BasketballTournament.GroupPhase
         public int Position { get; set; }
 
         public static int placeInGroup = 1;
+        public List<NationalTeamInGroup> wonAgainst { get; set; }
 
         public NationalTeamInGroup(NationalTeam nationalTeam) 
         {
             NationalTeam = nationalTeam;
             Points = 0;
+            wonAgainst = new List<NationalTeamInGroup>();
             fillPostionNumber();
         }
 
@@ -35,16 +37,18 @@ namespace BasketballTournament.GroupPhase
 
         public void UpdateStats(int thisTeamScore, int opponentTeamScore, bool thisTeamWon)
         {
-            Points += (thisTeamWon) ? 2 : 1;
+            if (thisTeamWon) 
+            {
+                Points += 2;
+            }
             NationalTeam.TeamStats.UpdateTeamStats(thisTeamScore, opponentTeamScore);
         }
 
         public override string ToString()
         {
-            string result = $"\t\t{Position}. {NationalTeam.Team} " +
-                $"{NationalTeam.TeamStats.Wins}/{NationalTeam.TeamStats.Losses}/{Points}" +
-                $"/{NationalTeam.TeamStats.ScoredPoints}/{NationalTeam.TeamStats.ReceivedPoints}" +
-                $"/{NationalTeam.TeamStats.DifferenceScoreReceivedPoints}\n";
+            
+            string result = string.Format("\t{0,2}. {1,-20} {2} / {3} / {4} / {5} / {6} / {7}\n",
+                Position, NationalTeam.Team, NationalTeam.TeamStats.Wins, NationalTeam.TeamStats.Losses, Points, NationalTeam.TeamStats.ScoredPoints, NationalTeam.TeamStats.ReceivedPoints, NationalTeam.TeamStats.DifferenceScoreReceivedPoints);
             return result;
         }
 

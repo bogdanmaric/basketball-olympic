@@ -31,7 +31,7 @@ namespace BasketballTournament.GroupPhase
         public override string ToString()
         {
             string result = "";
-            result = "Konačan plasman u grupama:\n";
+            result = "\nKonačan plasman u grupama:\n";
             foreach (var group in Groups) 
             {
                 result += $"{group}";

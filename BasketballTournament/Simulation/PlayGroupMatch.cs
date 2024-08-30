@@ -28,8 +28,8 @@ namespace BasketballTournament.Simulation
             Random rnd = new Random();
             int rankingDifference = Team1.NationalTeam.FIBARanking - Team2.NationalTeam.FIBARanking;
 
-            int Team1Score = rnd.Next(70, 100);
-            int Team2Score = rnd.Next(70, 100);
+            Team1Score = rnd.Next(70, 100);
+            Team2Score = rnd.Next(70, 100);
 
             int scoreAdjustment = rankingDifference / 10;
             Team1Score += scoreAdjustment;
@@ -49,6 +49,12 @@ namespace BasketballTournament.Simulation
                 Team2.wonAgainst.Add(Team1);
                 Team1.UpdateStats(Team1Score, Team2Score, false);
             }
+        }
+
+        public override string ToString()
+        {
+            string result = $"\t\t{Team1.NationalTeam.Team} - {Team2.NationalTeam.Team} ({Team1Score}:{Team2Score})";
+            return result;
         }
     }
 }

@@ -65,12 +65,15 @@ namespace BasketballTournament
 
         public void simulateMatchesInGroup() 
         {
+            Console.WriteLine($"Grupa {Name}:");
             for (int i = 0; i < NationalTeamInGroup.Count - 1; i++) 
             {
+                Console.WriteLine($"\tTim {NationalTeamInGroup[i].NationalTeam.Team}:");
                 for (int j = i + 1; j < NationalTeamInGroup.Count; j++)
                 {
                     PlayGroupMatch playGroupMatch = new PlayGroupMatch(NationalTeamInGroup[i], NationalTeamInGroup[j]);
                     playGroupMatch.PlayMatch();
+                    Console.WriteLine(playGroupMatch);
                 }
             }
 

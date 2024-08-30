@@ -26,5 +26,7 @@ internal class Program
         GroupPhase groupPhase = new GroupPhase(groups);
         groupPhase.SimulateGroupPhase();
         Console.WriteLine(groupPhase);
+
+        groupPhase.DisplayNationalTeamsRanking();
     }
 }

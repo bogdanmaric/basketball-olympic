@@ -49,6 +49,9 @@ namespace BasketballTournament.Simulation
                 Team2.wonAgainst.Add(Team1);
                 Team1.UpdateStats(Team1Score, Team2Score, false);
             }
+
+            Team1.playedAgainst.Add(Team2);
+            Team2.playedAgainst.Add(Team1);
         }
 
         public override string ToString()

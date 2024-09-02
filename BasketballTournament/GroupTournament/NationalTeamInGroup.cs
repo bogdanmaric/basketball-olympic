@@ -16,12 +16,14 @@ namespace BasketballTournament.GroupPhase
 
         public static int placeInGroup = 1;
         public List<NationalTeamInGroup> wonAgainst { get; set; }
+        public List<NationalTeamInGroup> playedAgainst { get; set; }
 
         public NationalTeamInGroup(NationalTeam nationalTeam) 
         {
             NationalTeam = nationalTeam;
             Points = 0;
             wonAgainst = new List<NationalTeamInGroup>();
+            playedAgainst = new List<NationalTeamInGroup>();
             fillPostionNumber();
         }
 

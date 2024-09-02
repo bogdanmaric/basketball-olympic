@@ -27,6 +27,7 @@ namespace BasketballTournament.GroupPhase
             {
                 group.simulateMatchesInGroup();
             }
+            Console.WriteLine(this.ToString());
             RankTeamsAfterGroupStage();
         }
 

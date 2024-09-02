@@ -1,4 +1,5 @@
 ﻿using BasketballTournament;
+using BasketballTournament.EliminationTournament;
 using BasketballTournament.GroupPhase;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -25,8 +26,16 @@ internal class Program
 
         GroupPhase groupPhase = new GroupPhase(groups);
         groupPhase.SimulateGroupPhase();
-        Console.WriteLine(groupPhase);
-
         groupPhase.DisplayNationalTeamsRanking();
+
+        //-----------------//
+        //Eliminaiton Phase//
+        //-----------------//
+
+        //Teams with 1-8 rank are going to elimination phase
+        EliminationPhase eliminationPhase = new EliminationPhase(groupPhase.NationalTeamsRanking.Take(8).ToList());
+        eliminationPhase.SetEliminationPhase();
+
+
     }
 }

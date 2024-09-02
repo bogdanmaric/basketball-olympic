@@ -24,11 +24,12 @@ namespace BasketballTournament
             // Sort teams by Points in descending order
             var sortedTeams = NationalTeamInGroup
                 .OrderByDescending(team => team.Points)
-                .ThenBy(team => GetRankByMutualResults(team))
-                .ThenBy(team => GetRankByRoundFormation(team))
+                .ThenBy(team => GetRankByPoints(team))
+                .ThenBy(team => GetRankByScoreDifference(team))
                 .ToList();
 
             NationalTeamInGroup = sortedTeams;
+
             // Update Position field for each team
             for (int i = 0; i < NationalTeamInGroup.Count; i++)
             {
@@ -36,7 +37,7 @@ namespace BasketballTournament
             }
         }
 
-        private int GetRankByMutualResults(NationalTeamInGroup team)
+        private int GetRankByPoints(NationalTeamInGroup team)
         {
            var tiedTeams = NationalTeamInGroup
                         .Where(t => t.Points == team.Points)
@@ -58,7 +59,7 @@ namespace BasketballTournament
             return 0; // No tie or three-team tie
         }
 
-        private int GetRankByRoundFormation(NationalTeamInGroup team)
+        private int GetRankByScoreDifference(NationalTeamInGroup team)
         {
             return team.NationalTeam.TeamStats.DifferenceScoreReceivedPoints;
         }
